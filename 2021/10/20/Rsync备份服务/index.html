@@ -6,15 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | Hexo</title>
+  <title>Rsync备份服务 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="rsync一种远程数据同步的工具，他可以在线同步数据，来进行数据的备份，与我们常用的（cp ，scp ） 命令进行数据备份有区别，rsync 可以进行增量备份，这一点，只有rsync可以做到，这也成为了，企业上常用的备份工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rsync备份服务">
+<meta property="og:url" content="http://example.com/2021/10/20/Rsync%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="rsync一种远程数据同步的工具，他可以在线同步数据，来进行数据的备份，与我们常用的（cp ，scp ） 命令进行数据备份有区别，rsync 可以进行增量备份，这一点，只有rsync可以做到，这也成为了，企业上常用的备份工具">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200308162726696.png">
+<meta property="og:image" content="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200308165915438.png">
+<meta property="og:image" content="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200308174234172.png">
+<meta property="og:image" content="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200311151031364.png">
+<meta property="og:image" content="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200311102610471.png">
+<meta property="og:image" content="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200311143704499.png">
+<meta property="og:image" content="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200312172538549.png">
+<meta property="og:image" content="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200312172756937.png">
+<meta property="article:published_time" content="2021-10-20T13:45:11.000Z">
+<meta property="article:modified_time" content="2021-10-20T14:05:27.319Z">
 <meta property="article:author" content="lhttao">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200308162726696.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,264 +172,484 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="nginx-Rsync备份服务" class="article article-type-nginx " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/nginx/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:45:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/nginx/">nginx</a>
+    <h1 class="article-title" itemprop="name">
+      Rsync备份服务
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-nginx">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/web%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:45:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/web%E5%9F%BA%E7%A1%80/">web基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-nginx">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/sersync/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:45:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/sersync/">sersync</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-nginx">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/Rsync%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1/" class="archive-article-date">
+        
+        <a href="/2021/10/20/Rsync%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1/" class="archive-article-date">
   	<time datetime="2021-10-20T13:45:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/Rsync%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1/">Rsync备份服务</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="rsync一种远程数据同步的工具，他可以在线同步数据，来进行数据的备份，与我们常用的（cp-，scp-）-命令进行数据备份有区别，rsync-可以进行增量备份，这一点，只有rsync可以做到，这也成为了，企业上常用的备份工具"><a href="#rsync一种远程数据同步的工具，他可以在线同步数据，来进行数据的备份，与我们常用的（cp-，scp-）-命令进行数据备份有区别，rsync-可以进行增量备份，这一点，只有rsync可以做到，这也成为了，企业上常用的备份工具" class="headerlink" title="rsync一种远程数据同步的工具，他可以在线同步数据，来进行数据的备份，与我们常用的（cp ，scp ） 命令进行数据备份有区别，rsync 可以进行增量备份，这一点，只有rsync可以做到，这也成为了，企业上常用的备份工具 "></a>rsync一种远程数据同步的工具，他可以在线同步数据，来进行数据的备份，与我们常用的（cp ，scp ） 命令进行数据备份有区别，rsync 可以进行增量备份，这一点，只有rsync可以做到，这也成为了，企业上常用的备份工具 <span id="more"></span></h2><p><img src="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200308162726696.png" alt="image-20200308162726696"></p>
+<h1 id="Rsync服务概念特性"><a href="#Rsync服务概念特性" class="headerlink" title="Rsync服务概念特性"></a>Rsync服务概念特性</h1><p>Rsync是一款开源的、快速的、多功能的、可实现<code>全量及增量</code>的本地或远程数据同步备份的优秀工具。并且可以不进行改变原有数据的属性信息，实现数据的备份迁移特性。Rsync软件适用于unix/linux/windows等多种操作系统平台。 Rsync是一个快速和非常通用的文件复制工具。它能本地复制，远程复制，或者远程守护进程方式复制。它提供了大量的参数来控制其行为的各个方面，并且允许非常灵活的方式来实现文件的传输复制。它以其delta-transfer算法闻名。减少通过网络数据发送数量，利用只发送源文件和目标文件之间的差异信息，从而实现数据的增量同步复制。</p>
+<p>Rsync被广泛用于数据备份和镜像</p>
+<p>，并且作为一种改进后的复制命令用于日常运维。</p>
+<p>Rsync具备使本地和远程两台主机之间的<code>数据快速复制</code>，<code>远程备份的功能</code>，Rsync命令本身即可实现<code>异地主机复制数据</code>，功能类似scp又优于scp，scp每次都是<code>全量备份</code>，rsync可以实现<code>增量拷贝</code>（和scp一样都是基于ssh服务传输），Rsync软件还支持配置守护进程，实现异机数据复制。</p>
+<p>增量复制是Rsync一特点，优于scp,cp命令。</p>
+<h1 id="Rsync实现如下功能"><a href="#Rsync实现如下功能" class="headerlink" title="Rsync实现如下功能"></a><em>Rsync实现如下功能</em></h1><ul>
+<li>本地数据同步复制，效果如cp</li>
+<li>远程数据同步复制，如scp</li>
+<li>本地数据删除，如rm</li>
+<li>远程数据查看，如ls</li>
+</ul>
+<p><em>Rsync软件特性</em></p>
+<ul>
+<li>支持拷贝普通文件，特殊文件（link文件，设备文件）</li>
+<li>支持排除指定文件、目录的同步功能（同步数据时，指定文件不同步）</li>
+<li>能够保持原有文件所有属性均不变（stat查看的状态）</li>
+<li>实现增量复制（只复制变化的数据，数据传输效率极高）</li>
+<li>可以配合ssh、rcp、rsh等方式进行隧道加密文件传输（rsync本身不加密数据）</li>
+<li>可以通过socket（进行通信文件）传输文件和数据（c/s架构）</li>
+<li>支持匿名用户模式传输</li>
+</ul>
+<h1 id="增量传输"><a href="#增量传输" class="headerlink" title="增量传输"></a>增量传输</h1><p><img src="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200308165915438.png" alt="image-20200308165915438"></p>
+<p>Rsync软件的增量备份是一大特点，在备份复制数据时，Rsync通过其quick cheek算法，仅复制文件（容量、最后修改时间变化）的文件或是目录，也可以指定文件权限的变化复制，甚至可以复制一个文件里仅变化的内容，因此可以实现快速的备份复制数据。</p>
+<p>Rsync在centos7系统上默认是3.x版本，效率更高，原理是一边比对差异，一边对差异的数据进行复制，比centos6上的Rsync 2.x更高效。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">查看rsync版本</span><br><span class="line">[root@chaogelinux ~]# rsync --version</span><br><span class="line">rsync  version 3.1.2  protocol version 31</span><br><span class="line"></span><br><span class="line">yum install rsync -y</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<h1 id="Rsync语法参数"><a href="#Rsync语法参数" class="headerlink" title="Rsync语法参数"></a>Rsync语法参数</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">Rsync命令参数详解</span><br><span class="line"></span><br><span class="line">在对rsync服务器配置结束以后，下一步就需要在客户端发出rsync命令来实现将服务器端的文件备份到客户端来。rsync是一个功能非常强大的工具，其命令也有很多功能特色选项，我们下面就对它的选项一一进行分析说明。Rsync的命令格式可以为以下六种：</span><br><span class="line"></span><br><span class="line">　　rsync [OPTION]... SRC DEST</span><br><span class="line">　　rsync [OPTION]... SRC [USER@]HOST:DEST</span><br><span class="line">　　rsync [OPTION]... [USER@]HOST:SRC DEST</span><br><span class="line">　　rsync [OPTION]... [USER@]HOST::SRC DEST</span><br><span class="line">　　rsync [OPTION]... SRC [USER@]HOST::DEST</span><br><span class="line">　　rsync [OPTION]... rsync://[USER@]HOST[:PORT]/SRC [DEST]</span><br><span class="line">　　对应于以上六种命令格式，rsync有六种不同的工作模式：</span><br><span class="line">　　1)拷贝本地文件。当SRC和DES路径信息都不包含有单个冒号&quot;:&quot;分隔符时就启动这种工作模式。如：rsync -a /data /backup</span><br><span class="line">　　2)使用一个远程shell程序(如rsh、ssh)来实现将本地机器的内容拷贝到远程机器。当DST路径地址包含单个冒号&quot;:&quot;分隔符时启动该模式。如：rsync -avz *.c foo:src</span><br><span class="line">　　3)使用一个远程shell程序(如rsh、ssh)来实现将远程机器的内容拷贝到本地机器。当SRC地址路径包含单个冒号&quot;:&quot;分隔符时启动该模式。如：rsync -avz foo:src/bar /data</span><br><span class="line">　　4)从远程rsync服务器中拷贝文件到本地机。当SRC路径信息包含&quot;::&quot;分隔符时启动该模式。如：rsync -av root@172.16.78.192::www /databack</span><br><span class="line">　　5)从本地机器拷贝文件到远程rsync服务器中。当DST路径信息包含&quot;::&quot;分隔符时启动该模式。如：rsync -av /databack root@172.16.78.192::www</span><br><span class="line">    6)列远程机的文件列表。这类似于rsync传输，不过只要在命令中省略掉本地机信息即可。如：rsync -v rsync://172.16.78.192/www</span><br><span class="line"></span><br><span class="line">rsync参数的具体解释如下：</span><br><span class="line"></span><br><span class="line">-v, --verbose 详细模式输出</span><br><span class="line">-q, --quiet 精简输出模式</span><br><span class="line">-c, --checksum 打开校验开关，强制对文件传输进行校验</span><br><span class="line">-a, --archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD</span><br><span class="line">-r, --recursive 对子目录以递归模式处理</span><br><span class="line">-R, --relative 使用相对路径信息</span><br><span class="line">-b, --backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用--suffix选项来指定不同的备份文件前缀。</span><br><span class="line">--backup-dir 将备份文件(如~filename)存放在在目录下。</span><br><span class="line">-suffix=SUFFIX 定义备份文件前缀</span><br><span class="line">-u, --update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件。(不覆盖更新的文件)</span><br><span class="line">-l, --links 保留软链结</span><br><span class="line">-L, --copy-links 想对待常规文件一样处理软链结</span><br><span class="line">--copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链结</span><br><span class="line">--safe-links 忽略指向SRC路径目录树以外的链结</span><br><span class="line">-H, --hard-links 保留硬链结     -p, --perms 保持文件权限</span><br><span class="line">-o, --owner 保持文件属主信息     -g, --group 保持文件属组信息</span><br><span class="line">-D, --devices 保持设备文件信息    -t, --times 保持文件时间信息</span><br><span class="line">-S, --sparse 对稀疏文件进行特殊处理以节省DST的空间</span><br><span class="line">-n, --dry-run现实哪些文件将被传输</span><br><span class="line">-W, --whole-file 拷贝文件，不进行增量检测</span><br><span class="line">-x, --one-file-system 不要跨越文件系统边界</span><br><span class="line">-B, --block-size=SIZE 检验算法使用的块尺寸，默认是700字节</span><br><span class="line">-e, --rsh=COMMAND 指定使用rsh、ssh方式进行数据同步</span><br><span class="line">--rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息</span><br><span class="line">-C, --cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件</span><br><span class="line">--existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件</span><br><span class="line">--delete 删除那些DST中SRC没有的文件</span><br><span class="line">--delete-excluded 同样删除接收端那些被该选项指定排除的文件</span><br><span class="line">--delete-after 传输结束以后再删除</span><br><span class="line">--ignore-errors 及时出现IO错误也进行删除</span><br><span class="line">--max-delete=NUM 最多删除NUM个文件</span><br><span class="line">--partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输</span><br><span class="line">--force 强制删除目录，即使不为空</span><br><span class="line">--numeric-ids 不将数字的用户和组ID匹配为用户名和组名</span><br><span class="line">--timeout=TIME IP超时时间，单位为秒</span><br><span class="line">-I, --ignore-times 不跳过那些有同样的时间和长度的文件</span><br><span class="line">--size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间</span><br><span class="line">--modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0</span><br><span class="line">-T --temp-dir=DIR 在DIR中创建临时文件</span><br><span class="line">--compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份</span><br><span class="line">-P 等同于 --partial</span><br><span class="line">--progress 显示备份过程</span><br><span class="line">-z, --compress 对备份的文件在传输时进行压缩处理</span><br><span class="line">--exclude=PATTERN 指定排除不需要传输的文件模式</span><br><span class="line">--include=PATTERN 指定不排除而需要传输的文件模式</span><br><span class="line">--exclude-from=FILE 排除FILE中指定模式的文件</span><br><span class="line">--include-from=FILE 不排除FILE指定模式匹配的文件</span><br><span class="line">--version 打印版本信息</span><br><span class="line">--address 绑定到特定的地址</span><br><span class="line">--config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件</span><br><span class="line">--port=PORT 指定其他的rsync服务端口</span><br><span class="line">--blocking-io 对远程shell使用阻塞IO</span><br><span class="line">-stats 给出某些文件的传输状态</span><br><span class="line">--progress 在传输时现实传输过程</span><br><span class="line">--log-format=formAT 指定日志文件格式</span><br><span class="line">--password-file=FILE 从FILE中得到密码</span><br><span class="line">--bwlimit=KBPS 限制I/O带宽，KBytes per second      </span><br><span class="line">-h, --help 显示帮助信息</span><br></pre></td></tr></table></figure>
 
+<h1 id="Rsync工作方式"><a href="#Rsync工作方式" class="headerlink" title="Rsync工作方式"></a>Rsync工作方式</h1><p>1本地数据传输</p>
+<p>类似cp的复制，实现文件，目录的增量复制。</p>
+<p>2.远程Shell数据传输</p>
+<p>借助SSH服务在两台服务器之间传输，没有客户端/服务端之分，两台机器是相对的复制关系。</p>
+<h2 id="本地的数据传输模式"><a href="#本地的数据传输模式" class="headerlink" title="本地的数据传输模式"></a>本地的数据传输模式</h2><p><em>语法模式</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync命令  参数   src源文件/目录    dest目标文件/目录</span><br></pre></td></tr></table></figure>
+
+<p>1.本地文件复制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 复制hosts文件</span><br><span class="line">[root@chaogelinux ~]# rsync /etc/hosts /tmp/</span><br></pre></td></tr></table></figure>
+
+<p>2.复制目录内容</p>
+<p>-r, –recursive 对子目录以递归模式处理</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 复制/data下所有内容到/tmp</span><br><span class="line">rsync -r /data/ /tmp/</span><br><span class="line"></span><br><span class="line"># 复制/data整个文件夹到/tmp</span><br><span class="line">rsync -r /data  /tmp   </span><br><span class="line"></span><br><span class="line">注意如上的区别</span><br></pre></td></tr></table></figure>
+
+<p>3.删除文件夹数据，使用参数–delete</p>
+<p>–delete 删除那些DST中SRC没有的文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 新建空文件夹</span><br><span class="line">[root@chaogelinux ~]# mkdir /opt/null</span><br><span class="line"># 同步删除数据</span><br><span class="line">[root@chaogelinux ~]# rsync -r --delete /opt/null/ /tmp/</span><br></pre></td></tr></table></figure>
+
+<p>4.清空文件内容，使用参数–delete，参数–delete必须和-r结合用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.echo &quot;超哥带你学Rsync&quot; &gt; /tmp/test.txt</span><br><span class="line">2.touch /tmp/null</span><br><span class="line">3.rsync -r --delete /tmp/null /tmp/test.txt</span><br></pre></td></tr></table></figure>
+
+<p>5.查询文件和目录信息，如同ls -l</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.查询文件、文件夹信息</span><br><span class="line">[root@chaogelinux ~]# rsync /etc/hosts</span><br><span class="line">-rw-r--r--            248 2020/03/05 15:47:44 hosts</span><br><span class="line">[root@chaogelinux ~]# rsync /opt</span><br><span class="line">drwxr-xr-x          4,096 2020/03/08 17:17:55 opt</span><br></pre></td></tr></table></figure>
+
+<h2 id="远程数据传输"><a href="#远程数据传输" class="headerlink" title="远程数据传输"></a>远程数据传输</h2><p>远程传输分为两种情况【拉取|推送】</p>
+<p>拉取：远端服务器数据，拉取到本地</p>
+<p>推送：本地数据发送给远程服务器</p>
+<p><em>拉取pull</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">语法</span><br><span class="line">rsync  option               user@host:src                   dest</span><br><span class="line">命令        可选参数        用户名@主机ip:源路径            本地路径</span><br></pre></td></tr></table></figure>
+
+<p><em>推送push</em></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">语法</span><br><span class="line">rsync        option        src            user@host:dest</span><br><span class="line">命令        参数            本地路径        用户@主机ip:目的路径</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200308174234172.png" alt="image-20200308174234172"></p>
+<p>1.拉取远程主机文件，拷贝到本地</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1.把远程主机的/etc/hosts文件，拷贝到本地/tmp</span><br><span class="line">rsync -av -e &#x27;ssh -p 22&#x27; root@123.206.16.61:/etc/hosts  /tmp</span><br><span class="line">-e, --rsh=COMMAND 指定使用rsh、ssh方式进行数据同步，若是默认22，可以不写该参数</span><br><span class="line">-a, --archive 归档模式，表示以递归方式传输文件，并保持所有文件属性</span><br><span class="line">-v, --verbose 详细模式输出</span><br><span class="line">-p，prot  后面指定端口</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#执行结果</span><br><span class="line">[root@web01 tmp]# rsync -av -e &#x27;ssh -p 22&#x27; root@123.206.16.61:/etc/hosts  /tmp</span><br><span class="line">The authenticity of host &#x27;123.206.16.61 (123.206.16.61)&#x27; can&#x27;t be established.</span><br><span class="line">ECDSA key fingerprint is SHA256:CVwhwfUka2JLs1iD53HpLPrretR4pGltYRL6QB+5lyI.</span><br><span class="line">ECDSA key fingerprint is MD5:4b:41:6f:bd:84:ce:24:c3:70:d1:04:a1:5d:01:8d:34.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)? yes</span><br><span class="line">Warning: Permanently added &#x27;123.206.16.61&#x27; (ECDSA) to the list of known hosts.</span><br><span class="line">root@123.206.16.61&#x27;s password:</span><br><span class="line">receiving incremental file list</span><br><span class="line">hosts</span><br><span class="line"></span><br><span class="line">sent 43 bytes  received 339 bytes  58.77 bytes/sec</span><br><span class="line">total size is 248  speedup is 0.65</span><br></pre></td></tr></table></figure>
+
+<p>2.把本地的/etc/hosts文件推送到远程服务器的/tmp下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -av /etc/hosts   root@123.206.16.61:/tmp/</span><br></pre></td></tr></table></figure>
+
+<p>【提示】</p>
+<ul>
+<li>远程数据传输，指定SSH协议默认需要输入主机密码，可以配置SSH免密登录更为方便</li>
+<li>工作环境下，采用rsync守护进程更为合适</li>
+</ul>
+<h2 id="守护进程传输模式"><a href="#守护进程传输模式" class="headerlink" title="守护进程传输模式"></a>守护进程传输模式</h2><p>守护进程传输模式是在客户端和服务端之间进行的数据复制。</p>
+<p>服务端需要配置守护进程，在客户端执行命令，实现数据<code>拉取</code>和<code>推送</code>。</p>
+<p>语法参数</p>
+<p>【拉取语法】</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.拉取模式语法，推荐使用，看清楚参数的符号！</span><br><span class="line">rsync        参数        user@host::src        dest</span><br><span class="line"></span><br><span class="line">2.拉取第二种</span><br><span class="line">rsync        参数        rsync://user@host:port/src</span><br></pre></td></tr></table></figure>
+
+<p>【推送语法】</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.推送语法</span><br><span class="line">rsync  参数  源路径    user@host::dest</span><br><span class="line"></span><br><span class="line">2.推送第二种</span><br><span class="line">rsync  参数  src    rsync://user@host:port/dest</span><br></pre></td></tr></table></figure>
+
+<p>通过语法可知，拉取和推送数据的语法几乎是相同的</p>
+<p>想要通过守护传输模式进行复制传输数据，还得额外部署Rsync Daemon服务才行</p>
+<h2 id="守护进程传输模式实战"><a href="#守护进程传输模式实战" class="headerlink" title="守护进程传输模式实战"></a>守护进程传输模式实战</h2><p>守护进程传输模式是在客户端和服务端之间进行的数据复制。</p>
+<p>服务端需要配置守护进程，在客户端执行命令，实现数据<code>拉取</code>和<code>推送</code>。</p>
+<p>语法参数</p>
+<p>【拉取语法】</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.拉取模式语法，推荐使用，看清楚参数的符号！</span><br><span class="line">rsync        参数        user@host::src        dest</span><br><span class="line"></span><br><span class="line">2.拉取第二种</span><br><span class="line">rsync        参数        rsync://user@host:port/src</span><br></pre></td></tr></table></figure>
+
+<p>【推送语法】</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.推送语法</span><br><span class="line">rsync  参数  源路径    user@host::dest</span><br><span class="line"></span><br><span class="line">2.推送第二种</span><br><span class="line">rsync  参数  src    rsync://user@host:port/dest</span><br></pre></td></tr></table></figure>
+
+<p>通过语法可知，拉取和推送数据的语法几乎是相同的</p>
+<p>想要通过守护传输模式进行复制传输数据，还得额外部署Rsync Daemon服务才行</p>
+<h2 id="守护进程传输模式实战-1"><a href="#守护进程传输模式实战-1" class="headerlink" title="守护进程传输模式实战"></a>守护进程传输模式实战</h2><h3 id="【准备三台linux服务器】"><a href="#【准备三台linux服务器】" class="headerlink" title="【准备三台linux服务器】"></a>【准备三台linux服务器】</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.准备3台linux机器</span><br><span class="line"></span><br><span class="line">老师机器的环境</span><br><span class="line">192.168.178.140 web01            Nginx web服务器</span><br><span class="line">192.168.178.139 backup    Rsync备份存储服务器</span><br><span class="line">192.168.178.138  nfs01            NFS存储服务器</span><br></pre></td></tr></table></figure>
+
+<p>三台机器的终端</p>
+<p><img src="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200311151031364.png" alt="image-20200311151031364"></p>
+<h4 id="【环境部署，Rsync备份服务器】"><a href="#【环境部署，Rsync备份服务器】" class="headerlink" title="【环境部署，Rsync备份服务器】"></a>【环境部署，Rsync备份服务器】</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1.准备linux系统环境  </span><br><span class="line">[root@chaoge_linux ~]# cat /etc/redhat-release</span><br><span class="line">CentOS Linux release 7.7.1908 (Core)</span><br><span class="line"></span><br><span class="line">[root@chaoge_linux ~]# uname -r    # 查看内核版本</span><br><span class="line">3.10.0-1062.9.1.el7.x86_64</span><br><span class="line">[root@chaoge_linux ~]# uname -m    # 查看系统架构</span><br><span class="line">x86_64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2.是否安装了rsync软件，若是未安装可以yum安装即可  </span><br><span class="line">[root@chaogelinux ~]# rpm -qa rsync</span><br><span class="line">rsync-3.1.2-6.el7_6.1.x86_64</span><br></pre></td></tr></table></figure>
+
+<p>【配置需求】</p>
+<p>在Rsync备份机器上以rsync守护进程的方式部署Rsync服务，使得所有Rsync节点的客户端主机，可以把本地数据通过rsync命令备份数据到BACKUP服务器上。</p>
+<p>【备份架构拓扑图】</p>
+<p>以Rsync守护进程模式部署架构，并且以远程数据同步方式由客户端节点向服务器端推送数据</p>
+<p><img src="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200311102610471.png" alt="image-20200311102610471"></p>
+<h2 id="Rsync守护进程客户端访问原理图"><a href="#Rsync守护进程客户端访问原理图" class="headerlink" title="Rsync守护进程客户端访问原理图"></a>Rsync守护进程客户端访问原理图</h2><p><img src="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200311143704499.png" alt="image-20200311143704499"></p>
+<h2 id="Rsync服务端部署一"><a href="#Rsync服务端部署一" class="headerlink" title="Rsync服务端部署一"></a>Rsync服务端部署一</h2><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>举例</th>
+<th>Rsync步骤</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>确认是否有个房间可以当做仓库</td>
+<td>确认Rsync程序是否安装</td>
+</tr>
+<tr>
+<td>2</td>
+<td>装修改造房间为仓库</td>
+<td>修改Rsync配置文件信息</td>
+</tr>
+<tr>
+<td>3</td>
+<td>确认仓库的管理员</td>
+<td>创建负责Rsync服务的虚拟用户</td>
+</tr>
+<tr>
+<td>4</td>
+<td>仓库中有柜子可以存储，管理员可以打开柜子</td>
+<td>创建Rsync服务备份数据的目录，进行对虚拟用户授权</td>
+</tr>
+<tr>
+<td>5</td>
+<td>仓库要提升安全，上个锁</td>
+<td>配置Rsync服务安全相关密钥，且对密钥文件授权600</td>
+</tr>
+<tr>
+<td>6</td>
+<td>确认仓库可以用了</td>
+<td>启动Rsync服务，让其可以工作</td>
+</tr>
+<tr>
+<td>7</td>
+<td>确定仓库每天开门工作</td>
+<td>设置Rsync服务开机启动</td>
+</tr>
+</tbody></table>
+<p>【第一步，修改rsyncd.conf配置文件】</p>
+<p>Rsync守护进程配置在BACKUP服务器上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">1.确认安装rsync服务</span><br><span class="line">yum install rsync -y </span><br><span class="line"></span><br><span class="line">2.修改配置文件，默认是 /etc/rsyncd.conf</span><br><span class="line">写入如下参数</span><br><span class="line">######by chaoge   rsyncd.conf	#在最低行写入如下的数据</span><br><span class="line"></span><br><span class="line">uid = rsync		#指定rsync服务运行的时候，想磁盘写入数据和读取数据的用户是谁</span><br><span class="line">gid = rsync		# 指定rsync服务运行的时候，向磁盘进行读取和写入操作的操作者</span><br><span class="line">fake super = yes # 无需让rsync以root身份运行即可保存文件完整属性</span><br><span class="line">use chroot = no		# 进行数据同步存数时，有关安全的参数，默认企业都是内网rsync同步，这个参数可以关闭了</span><br><span class="line">max connections = 200	# 定义向备份服务器进行数据存储的并发连接数</span><br><span class="line">timeout = 300		# 定义与备份服务器建立的网络连接，在多长时间没有数据传输时，就释放连接</span><br><span class="line">pid file = /var/run/rsyncd.pid	# rsync服务运行时，用于记录rsync进程id号的文件</span><br><span class="line">lock file = /var/run/rsync.lock	# 定义锁文件，主要和上述的max conn连接数进行并发控制</span><br><span class="line">log file = /var/log/rsyncd.log	# 定义日志位置</span><br><span class="line">ignore errors		# 在进行数据备份传输过程过程中，忽略一些I/O产生的传输错误</span><br><span class="line">read only = false	# 	设置对备份的目录的具有读写权限，即将只读模式进行关闭</span><br><span class="line">list = false	# 确认是否可以将服务配置的模块信息，在客户端可以查看显示</span><br><span class="line">hosts allow = 192.168.31.0/24	# 允许那些网段可以访问rsync</span><br><span class="line">hosts deny = 0.0.0.0/32		# 拒绝所有的其他IP访问</span><br><span class="line">auth users = rsync_backup	#	用于链接rsync服务端的验证用户名</span><br><span class="line">secrets file = /etc/rsync.password	# 定义密码文件路径</span><br><span class="line">[backup]	# 定义区、断的名字，也是用于定义备份模块的信息，可以写入多个</span><br><span class="line">comment = This is tao backup!</span><br><span class="line">path = /backup/</span><br></pre></td></tr></table></figure>
+
+<h2 id="在rsync服务端坐好环境配置工作"><a href="#在rsync服务端坐好环境配置工作" class="headerlink" title="在rsync服务端坐好环境配置工作"></a>在rsync服务端坐好环境配置工作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">1.根据rsyncd.conf中定义的用户，目录，等信息，进行创建</span><br><span class="line">useradd rsync -s /sbin/nologin -M;</span><br><span class="line">mkdir -p /backup</span><br><span class="line">chown -R  rsync.rsync /backup</span><br><span class="line">[root@nginx_124 ~]# ll -d /backup</span><br><span class="line">drwxr-xr-x 2 rsync rsync 6 10月  2 15:39 /backup</span><br><span class="line"></span><br><span class="line">2.配置用于rsync进行复制验证的账户，密码，文件等信息</span><br><span class="line">[root@nginx_124 ~]# echo &quot;rsync_backup:123qwe&quot; &gt; /etc/rsync.password</span><br><span class="line">[root@nginx_124 ~]# cat /etc/rsync.password </span><br><span class="line">rsync_bakup:123qwe</span><br><span class="line">[root@nginx_124 ~]# chmod 600 /etc/rsync.password </span><br><span class="line">[root@nginx_124 ~]# </span><br><span class="line">[root@nginx_124 ~]# ll /etc/rsync.password </span><br><span class="line">-rw------- 1 root root 19 10月  4 13:45 /etc/rsync.password</span><br><span class="line"></span><br><span class="line">3.启动rsync服务，以及检查服务开机自启</span><br><span class="line">[root@nginx_124 ~]# systemctl start rsyncd</span><br><span class="line">[root@nginx_124 ~]# systemctl status rsyncd</span><br><span class="line">● rsyncd.service - fast remote file copy program daemon</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/rsyncd.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since 一 2021-10-04 11:17:59 CST; 2h 31min ago</span><br><span class="line"> Main PID: 831 (rsync)</span><br><span class="line">   CGroup: /system.slice/rsyncd.service</span><br><span class="line">           └─831 /usr/bin/rsync --daemon --no-detach</span><br><span class="line"></span><br><span class="line">10月 04 11:17:59 nginx_124 systemd[1]: Started fast remote file copy program daemon.</span><br><span class="line">10月 04 11:17:59 nginx_124 rsyncd[831]: rsyncd version 3.1.2 starting, listening on port 873</span><br><span class="line">[root@nginx_124 ~]# systemctl enable rsyncd</span><br><span class="line"></span><br><span class="line">4.检查rsync服务端的进程和端口</span><br><span class="line">[root@nginx_124 ~]# ps -ef |grep rsync</span><br><span class="line">root        831      1  0 11:19 ?        00:00:00 /usr/bin/rsync --daemon --no-detach</span><br><span class="line">root       1601   1449  0 13:49 pts/0    00:00:00 grep --color=auto rsync</span><br><span class="line">[root@nginx_124 ~]# netstat -tunlp |grep rsync</span><br><span class="line">tcp        0      0 0.0.0.0:873             0.0.0.0:*               LISTEN      831/rsync           </span><br><span class="line">tcp6       0      0 :::873                  :::*                    LISTEN      831/rsync       </span><br></pre></td></tr></table></figure>
+
+<h2 id="rsync客户端部署操作"><a href="#rsync客户端部署操作" class="headerlink" title="rsync客户端部署操作"></a>rsync客户端部署操作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.确认rsync命令是否存在</span><br><span class="line">2.创建rsync服务断连接的账号密码文件，以及授权</span><br><span class="line">3.注意rsync客户端要和服务断的配置区别开</span><br></pre></td></tr></table></figure>
+
+<p>配置笔记</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">1.安装rsync服务</span><br><span class="line">yum  install  rsync  -y</span><br><span class="line">[root@php_123 ~]# rsync --version</span><br><span class="line">rsync  version 3.1.2  protocol version 31</span><br><span class="line"></span><br><span class="line">2.创建用于和rsync链接的账密文件</span><br><span class="line">[root@php_123 ~]# echo &quot;123qwe&quot; &gt; /etc/rsync.password</span><br><span class="line">[root@php_123 ~]# cat /etc/rsync.password </span><br><span class="line">123qwe</span><br><span class="line"></span><br><span class="line">3.对秘密文件授权</span><br><span class="line">[root@php_123 ~]# chmod 600 /etc/rsync.password </span><br><span class="line">[root@php_123 ~]# ll /etc/rsync.password </span><br><span class="line">-rw------- 1 root root 7 10月  4 13:56 /etc/rsync.password</span><br><span class="line"></span><br><span class="line">4.除了使用这种密码文件的形式，rsync也支持使用变量的方式，省略指定密码验证</span><br><span class="line">[root@php_123 ~]# export RSYNC_PASSWORD=123qwe</span><br><span class="line">[root@php_123 ~]# echo $RSYNC_PASSWORD</span><br><span class="line">123qwe</span><br><span class="line"></span><br><span class="line">5.永久变量生效</span><br><span class="line">[root@php_123 ~]# echo &quot;export RSYNC_PASSWORD=123qwe&quot;  &gt;&gt;  /etc/profile </span><br><span class="line">[root@php_123 ~]# tail -1 /etc/profile</span><br><span class="line">export RSYNC_PASSWORD=123qwe</span><br></pre></td></tr></table></figure>
+
+<p>至此，rsync服务端以及以守护进程模式运行了，客户端的环境准备也弄好了</p>
+<h1 id="测试rsync数据推拉"><a href="#测试rsync数据推拉" class="headerlink" title="测试rsync数据推拉"></a>测试rsync数据推拉</h1><h3 id="推送：客户端同步文件给服务端"><a href="#推送：客户端同步文件给服务端" class="headerlink" title="推送：客户端同步文件给服务端"></a>推送：客户端同步文件给服务端</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1.从客户端推送 /opt目录 同步到服务端Rsync指定的目录（/bakcup）下</span><br><span class="line">[root@nfs01 ~]# rsync -avzP /opt  rsync_backup@192.168.178.139::backup --password-file=/etc/rsync.password</span><br><span class="line">参数解释</span><br><span class="line">-avzP /opt</span><br><span class="line">-a  保持文件原有属性</span><br><span class="line">-v    显示传输细节情况</span><br><span class="line">-z    对传输数据压缩传输</span><br><span class="line">-P    显示文件传输的进度信息</span><br><span class="line">/opt  要推送的本地目录，注意/opt/ 表示推送该目录下内容</span><br><span class="line"></span><br><span class="line">选项解释</span><br><span class="line">rsync_backup@192.168.178.139::backup --password-file=/etc/rsync.password</span><br><span class="line"></span><br><span class="line"># 验证rsync服务端参数 grep &#x27;auth user&#x27; /etc/rsyncd.conf</span><br><span class="line">rsync_backup    rsync同步数据的虚拟认证用户 </span><br><span class="line"># 是rsync服务端配置文件中定义的模块名  /etc/rsyncd.conf </span><br><span class="line">@192.168.178.139::backup   要推送的目的地ip地址以及模块名称</span><br><span class="line"></span><br><span class="line">--password-file=/etc/rsync.password   #指定密码文件</span><br><span class="line">2.也可以直接使用密码变量，进行同步</span><br><span class="line">[root@nfs01 ~]# tail -1 /etc/profile</span><br><span class="line">export RSYNC_PASSWORD=123qwe</span><br><span class="line">[root@nfs01 ~]# rsync -avzP /etc/ rsync_backup@192.168.178.139::backup</span><br></pre></td></tr></table></figure>
+
+<h3 id="拉取数据的操作：从rsync服务端把数据拉取到本地来"><a href="#拉取数据的操作：从rsync服务端把数据拉取到本地来" class="headerlink" title="拉取数据的操作：从rsync服务端把数据拉取到本地来"></a>拉取数据的操作：从rsync服务端把数据拉取到本地来</h3><p>把rsync服务端的备份目录中的数据，拷贝到客户端的某个目录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.在客户端执行</span><br><span class="line">[root@php_123 mytools]# rsync -avzP rsync_backup@192.168.31.124::backup /opt/ --password-file=/etc/rsync.password </span><br><span class="line"></span><br><span class="line">2.此时也就是把rsync服务端的/backup目录下的内容，同步到客户端的/opt目录下了</span><br><span class="line">[root@php_123 mytools]# ls /opt/</span><br><span class="line">100         14.txt  1.txt   25     30  36     41  47     52  58     63  69     74  7.txt  85     90  96</span><br><span class="line">10.txt      15.txt  20.txt  26     31  37     42  48     53  59     64  6.txt  75  80     86     91  97</span><br><span class="line">11.txt      16.txt  21.txt  27     32  38     43  49     54  5.txt  65  70     76  81     87     92  98</span><br><span class="line">&#123;1.22&#125;.txt  17.txt  22.txt  28     33  39     44  4.txt  55  60     66  71     77  82     88     93  99</span><br><span class="line">12.txt      18.txt  23      29     34  3.txt  45  50     56  61     67  72     78  83     89     94  9.txt</span><br><span class="line">13.txt      19.txt  24      2.txt  35  40     46  51     57  62     68  73     79  84     8.txt  95</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="注意同步问题"><a href="#注意同步问题" class="headerlink" title="注意同步问题"></a>注意同步问题</h1><h2 id="Rsync服务端排错思路"><a href="#Rsync服务端排错思路" class="headerlink" title="Rsync服务端排错思路"></a>Rsync服务端排错思路</h2><ol>
+<li>检查rsync服务端的配置文件路径是否正确：<code>/etc/rsyncd.conf</code></li>
+<li>查看配置文件的<code>host allow</code>,<code>host deny</code>允许的ip网段是否允许客户端访问</li>
+<li>查看配置文件中的path参数路径是否存在，权限是否正确（和配置文件的UUID参数对应）</li>
+<li>查看rsync服务是否启动，端口、进程是否存活</li>
+<li>查看iptables防火墙、selinux是否允许rsync服务通过，或是关闭</li>
+<li>查看服务端rsync配置文件的密码文件，权限是否600，格式，语法是否正确，且和配置文件的<code>secrect files</code>参数对应</li>
+<li>如果是推送数据，要查看配置rsyncd.conf中的用户对该<code>rsync模块</code>下的文件是否可以读取</li>
+</ol>
+<h2 id="Rsync客户端排错"><a href="#Rsync客户端排错" class="headerlink" title="Rsync客户端排错"></a>Rsync客户端排错</h2><ol>
+<li>查看rsync客户端配置的密码文件权限是否600，密码文件格式是否正确，是否和服务端的密码一致</li>
+<li>尝试telnet连接rsync服务端的<code>873</code>端口，检测服务是否可以连接</li>
+<li>客户端执行命令语法要检查，细心</li>
+</ol>
+<h3 id="【客户端的错误现象：No-route-to-host】"><a href="#【客户端的错误现象：No-route-to-host】" class="headerlink" title="【客户端的错误现象：No route to host】"></a>【客户端的错误现象：No route to host】</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@nfs01 tmp]# rsync -avz /etc/hosts rsync_backup@172.16.1.41::backup</span><br><span class="line"></span><br><span class="line">rsync: failed to connect to 172.16.1.41: No route to host (113)</span><br><span class="line"></span><br><span class="line">rsync error: error in socket IO (code 10) at clientserver.c(124) [sender=3.0.6]</span><br></pre></td></tr></table></figure>
+
+<p>办法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.关闭iptables，或者添加规则</span><br><span class="line">iptables -F</span><br><span class="line">systemctl stop firewalld</span><br><span class="line"></span><br><span class="line">2.关闭selinux</span><br><span class="line">[root@nfs01 ~]# setenforce 0  #临时关闭</span><br><span class="line">[root@rsync01 ~]# sed -i &#x27;s/enforcing/disabled/g&#x27; /etc/selinux/config  #重启永久关闭</span><br></pre></td></tr></table></figure>
+
+<h3 id="【注意命令同步的细节】"><a href="#【注意命令同步的细节】" class="headerlink" title="【注意命令同步的细节】"></a>【注意命令同步的细节】</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.同步整个文件夹</span><br><span class="line">[root@nfs01 ~]# rsync -avzP /etc rsync_backup@192.168.178.139::backup</span><br><span class="line"></span><br><span class="line">2.同步文件夹下内容</span><br><span class="line">[root@nfs01 ~]# rsync -avzP /etc/ rsync_backup@192.168.178.139::backup</span><br></pre></td></tr></table></figure>
+
+<h3 id="【ERROR-The-remote-path-must-start-with-a-module-name-not-a-】"><a href="#【ERROR-The-remote-path-must-start-with-a-module-name-not-a-】" class="headerlink" title="【ERROR: The remote path must start with a module name not a /】"></a>【ERROR: The remote path must start with a module name not a /】</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rsync客户端执行rsync命令错误：</span><br><span class="line"></span><br><span class="line">客户端的错误现象：  </span><br><span class="line"></span><br><span class="line">[root@nfs01 tmp]# rsync -avz /etc/hosts rsync_backup@172.16.1.41::/backup</span><br><span class="line"></span><br><span class="line">ERROR: The remote path must start with a module name not a /</span><br><span class="line"></span><br><span class="line">rsync error: error starting client-server protocol (code 5) at main.c(1503) [sender=3.0.6]</span><br></pre></td></tr></table></figure>
+
+<p>办法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">原因：客户端命令敲错了</span><br><span class="line">rsync命令语法理解错误，::/backup是错误的语法，应该为::backup(rsync模块)</span><br></pre></td></tr></table></figure>
+
+<h3 id="【-ERROR-auth-failed-on-module-backup】"><a href="#【-ERROR-auth-failed-on-module-backup】" class="headerlink" title="【@ERROR: auth failed on module backup】"></a>【@ERROR: auth failed on module backup】</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">客户端的错误现象：</span><br><span class="line"></span><br><span class="line">[root@nfs01 tmp]# rsync -avz /etc/hosts rsync_backup@172.16.1.41::backup</span><br><span class="line"></span><br><span class="line">Password:</span><br><span class="line"></span><br><span class="line">@ERROR: auth failed on module backup</span><br><span class="line"></span><br><span class="line">rsync error: error starting client-server protocol (code 5) at main.c(1503) [sender=3.0.6]</span><br></pre></td></tr></table></figure>
+
+<p>办法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.密码文件错误/etc/rsync.password</span><br><span class="line">2.密码文件参数和实际的密码文件名不一致，检查secrets file = /etc/rsync.password</span><br><span class="line">3.密码文件权限不对 ll /etc/rsync.password  不是600</span><br><span class="line">4.检查免密文件，是否手误</span><br><span class="line">[root@rsync01 ~]# cat /etc/rsync.password</span><br><span class="line">rsync_backup:chaoge</span><br><span class="line"></span><br><span class="line">5.rsync客户端的密码文件写错，只需要写入密码即可</span><br><span class="line">[root@nfs01 ~]# cat /etc/rsync.password</span><br><span class="line">chaoge</span><br></pre></td></tr></table></figure>
+
+<h3 id="【-ERROR-Unknown-module-‘backup’】"><a href="#【-ERROR-Unknown-module-‘backup’】" class="headerlink" title="【@ERROR: Unknown module ‘backup’】"></a>【@ERROR: Unknown module ‘backup’】</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@nfs01 tmp]# rsync -avz /etc/hosts rsync_backup@172.16.1.41::backup</span><br><span class="line"></span><br><span class="line">@ERROR: Unknown module &#x27;backup&#x27;</span><br><span class="line"></span><br><span class="line">rsync error: error starting client-server protocol (code 5) at main.c(1503) [sender=3.0.6]</span><br></pre></td></tr></table></figure>
+
+<p>办法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">异常问题解决：</span><br><span class="line"></span><br><span class="line">1、 /etc/rsyncd.conf配置文件模块名称书写错误</span><br><span class="line"></span><br><span class="line">2、配置文件中网段限制不对</span><br></pre></td></tr></table></figure>
+
+<h3 id="【Permission-denied】"><a href="#【Permission-denied】" class="headerlink" title="【Permission denied】"></a>【Permission denied】</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@nfs01 tmp]# rsync -avz /etc/hosts rsync_backup@172.16.1.41::backup</span><br><span class="line"></span><br><span class="line">Password:</span><br><span class="line"></span><br><span class="line">sending incremental file list</span><br><span class="line"></span><br><span class="line">hosts</span><br><span class="line"></span><br><span class="line">rsync: mkstemp &quot;.hosts.5z3AOA&quot; (in backup) failed: Permission denied (13)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sent 196 bytes  received 27 bytes  63.71 bytes/sec</span><br><span class="line"></span><br><span class="line">total size is 349  speedup is 1.57</span><br><span class="line"></span><br><span class="line">rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1039) [sender=3.0.6]</span><br></pre></td></tr></table></figure>
+
+<p>办法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1. 共享目录的属主和属组不正确，不是rsync</span><br><span class="line"></span><br><span class="line">2. 共享目录的权限不正确，不是755</span><br><span class="line"></span><br><span class="line">3.注意防火墙，selinux的关闭</span><br></pre></td></tr></table></figure>
+
+<h3 id="【chdir-failed-】"><a href="#【chdir-failed-】" class="headerlink" title="【chdir failed 】"></a>【chdir failed 】</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@nfs01 tmp]# rsync -avz /etc/hosts rsync_backup@172.16.1.41::backup</span><br><span class="line"></span><br><span class="line">Password:</span><br><span class="line"></span><br><span class="line">@ERROR: chdir failed</span><br><span class="line"></span><br><span class="line">rsync error: error starting client-server protocol (code 5) at main.c(1503) [sender=3.0.6]</span><br></pre></td></tr></table></figure>
+
+<p>办法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">异常问题解决：</span><br><span class="line"></span><br><span class="line">1. 备份存储目录没有建立</span><br><span class="line"></span><br><span class="line">2. 建立的备份存储目录和配置文件定义不一致</span><br></pre></td></tr></table></figure>
+
+<h3 id="【invalid-uid-rsync】"><a href="#【invalid-uid-rsync】" class="headerlink" title="【invalid uid rsync】"></a>【invalid uid rsync】</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@nfs01 tmp]# rsync -avz /etc/hosts rsync_backup@172.16.1.41::backup</span><br><span class="line"></span><br><span class="line">Password:</span><br><span class="line"></span><br><span class="line">@ERROR: invalid uid rsync</span><br><span class="line"></span><br><span class="line">rsync error: error starting client-server protocol (code 5) at main.c(1503) [sender=3.0.6]</span><br></pre></td></tr></table></figure>
+
+<p>办法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">异常问题解决：</span><br><span class="line"></span><br><span class="line">rsync服务对应rsync虚拟用户不存在了</span><br></pre></td></tr></table></figure>
+
+<h3 id="客户端有-etc-rsync-password依旧需要输入密码"><a href="#客户端有-etc-rsync-password依旧需要输入密码" class="headerlink" title="客户端有/etc/rsync.password依旧需要输入密码"></a>客户端有/etc/rsync.password依旧需要输入密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.密码文件也得是600权限</span><br><span class="line">2.密码文件名字是否正常</span><br></pre></td></tr></table></figure>
+
+<h3 id="【Connection-refused-111-】"><a href="#【Connection-refused-111-】" class="headerlink" title="【Connection refused (111)】"></a>【Connection refused (111)】</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@oldboy-muban ~]#  rsync -avz /etc/hosts rsync_backup@172.16.1.41::backup</span><br><span class="line"></span><br><span class="line">rsync: failed to connect to 172.16.1.41: Connection refused (111)</span><br><span class="line"></span><br><span class="line">rsync error: error in socket IO (code 10) at clientserver.c(124) [sender=3.0.6]</span><br></pre></td></tr></table></figure>
+
+<p>办法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.检查防火墙，selinux的关闭</span><br><span class="line">2.检查rsync服务端rsyncd是否开启</span><br></pre></td></tr></table></figure>
+
+<h1 id="Rync扩展"><a href="#Rync扩展" class="headerlink" title="Rync扩展"></a>Rync扩展</h1><h1 id="rsync多模块"><a href="#rsync多模块" class="headerlink" title="rsync多模块"></a>rsync多模块</h1><p>修改rsyncd.conf住配置文件，在最低行写入如下信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[myweb]</span><br><span class="line">comment = This is tao web static</span><br><span class="line">path = /web_static/</span><br></pre></td></tr></table></figure>
+
+<p>修改完配置文件以后，要穿见目录与权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@nginx_124 /]# mkdir /web_static</span><br><span class="line">[root@nginx_124 /]# chown -R rsync.rsync /web_static/</span><br><span class="line">[root@nginx_124 /]# ll -d /web_static/</span><br><span class="line">drwxr-xr-x 2 rsync rsync 6 10月  4 15:30 /web_static/</span><br></pre></td></tr></table></figure>
+
+<p>重启rsync服务端</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@nginx_124 /]# systemctl restart rsyncd</span><br><span class="line">[root@nginx_124 /]# systemctl status rsyncd</span><br><span class="line">● rsyncd.service - fast remote file copy program daemon</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/rsyncd.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since 一 2021-10-04 15:31:22 CST; 6s ago</span><br><span class="line"> Main PID: 1788 (rsync)</span><br><span class="line">   CGroup: /system.slice/rsyncd.service</span><br><span class="line">           └─1788 /usr/bin/rsync --daemon --no-detach</span><br><span class="line"></span><br><span class="line">10月 04 15:31:22 nginx_124 systemd[1]: Started fast remote file copy program daemon.</span><br></pre></td></tr></table></figure>
+
+<p>在客户端进行rsync测试，和新的模块进行数据同步</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.再次和backup模块进行数据推拉</span><br><span class="line">推送数据，把客户端本地的数据，推送给服务端</span><br><span class="line">[root@php_123 opt]# rsync -azP /opt   rsync_backup@192.168.31.124::backup/test   </span><br><span class="line"></span><br><span class="line">拉取数据，拉取backup模块下的数据</span><br><span class="line">[root@php_123 opt]# rsync -avzP  rsync_backup@192.168.31.124::backup/test   /tmp/123   </span><br></pre></td></tr></table></figure>
+
+<p>针对第二个my_web模块进行数据推拉</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.推送数据</span><br><span class="line">[root@php_123 opt]# rsync -avzP   /tmp/123   rsync_backup@192.168.31.124::myweb --password-file=/etc/rsync.password</span><br><span class="line">2.拉取数据</span><br><span class="line">[root@php_123 opt]# rsync -avzP   rsync_backup@192.168.31.124::myweb  /opt</span><br></pre></td></tr></table></figure>
+
+<h1 id="rsync指定目录和文件进行排除复制"><a href="#rsync指定目录和文件进行排除复制" class="headerlink" title="rsync指定目录和文件进行排除复制"></a>rsync指定目录和文件进行排除复制</h1><p>1.准备好rsync服务端，在服务断中准备一些数据，当前要操作的服务端，备份模块式myweb</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@php_123 opt]# tree</span><br><span class="line">.</span><br><span class="line">├── a</span><br><span class="line">│   └── 1.txt</span><br><span class="line">├── b</span><br><span class="line">│   └── 2.txt</span><br><span class="line">├── c</span><br><span class="line">│   └── 3.txt</span><br><span class="line">└── d</span><br><span class="line">    └── 4.txt</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.在客户端上拉取文件，命令多加一个排他的参数，排除文件或目录</p>
+<p>–exclude=文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@php_123 opt]# rsync --exclude=a  --exclude=b/1.txt  --exclude=d -avzP sync_backup@192.168.31.124::myweb  /opt/  </span><br></pre></td></tr></table></figure>
+
+<h2 id="方法二，在Rsync服务端配置"><a href="#方法二，在Rsync服务端配置" class="headerlink" title="方法二，在Rsync服务端配置"></a>方法二，在Rsync服务端配置</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.修改rsync服务端配置文件，添加如下配置，排除指定目录</span><br><span class="line">exclude=a c b/2</span><br><span class="line">  </span><br><span class="line">2.重启服务</span><br><span class="line">[root@rsync01 backup]# systemctl restart rsyncd</span><br></pre></td></tr></table></figure>
+
+<p>3.在客户端验证拉取，仍然能够看到同样的结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@nfs01 ~]# rsync --exclude=a --exclude=b/2  --exclude=c -avzP rsync_backup@192.168.178.148::backup /mnt --password-file=/etc/rsync.password^C</span><br><span class="line">[root@nfs01 ~]#</span><br><span class="line">[root@nfs01 ~]#</span><br><span class="line">[root@nfs01 ~]# rsync -avzP rsync_backup@192.168.178.148::backup /mnt</span><br></pre></td></tr></table></figure>
+
+<h1 id="rsync数据同步之无差异数据复制"><a href="#rsync数据同步之无差异数据复制" class="headerlink" title="rsync数据同步之无差异数据复制"></a>rsync数据同步之无差异数据复制</h1><p>【问题背景】</p>
+<p><img src="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200312172538549.png" alt="image-20200312172538549"></p>
+<p>【无差异复制】</p>
+<p><img src="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200312172756937.png" alt="image-20200312172756937"></p>
+<p>实现该同步方式，主要是使用rsync的<code>--delete</code>参数</p>
+<p>所谓无差异复制，指的是<code>无论拉取，还是推送，都保持两边的数据完全一致</code>，也就删除其他多余文件的参数</p>
+<p>【1.本地推送式删除】</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 保持/mnt下内容和/tmp完全一致，删除其他多余文件</span><br><span class="line">[root@rsync01 tmp]# rsync -avzP --delete /tmp/  /mnt/</span><br></pre></td></tr></table></figure>
+
+<p>【2.拉取数据无差异同步】</p>
+<p>注意rsyncd.conf配置文件，之前配置过<code>排除文件的参数</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -avzP --delete rsync_backup@192.168.178.148::backup /mnt/ --password-file=/etc/rsync.password</span><br></pre></td></tr></table></figure>
+
+<p><strong>再次强调，<code>--delete</code>参数就是保证<code>客户端</code>和<code>服务端</code>的数据完全一致，这可能是个危险的命令！！</strong></p>
+<p>【3.推送数据无差异同步】</p>
+<p><strong>也就是将本地的目录和远程服务端的目录保持一致，使用不当可能会造成远程服务器的备份数据丢失！！小心使用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@nfs01 ~]# rsync -avz  --delete /tmp/ rsync_backup@192.168.178.157::backup --password-file=/etc/rsync.password[root@nfs01 ~]# rsync -avz  --delete /tmp/ rsync_backup@192.168.178.157::backup --password-file=/etc/rsync.password</span><br></pre></td></tr></table></figure>
+
+<h3 id="–delete参数总结与生产环境"><a href="#–delete参数总结与生产环境" class="headerlink" title="–delete参数总结与生产环境"></a>–delete参数总结与生产环境</h3><ul>
+<li>Rsync推送企业工作场景：数据备份、上传</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">本地有的资料，远端机器完全一致</span><br><span class="line">在使用场景是备份、上传情况下，一般不用加上--delete参数，除非是NFS服务的实施复制，数据必须完全一致性</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Rsync拉取场景：代码发布、下载</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rsync无差异同步还可以用于负载均衡下的Web服务器之间的同步，或者NFS共享数据的同步</span><br></pre></td></tr></table></figure>
+
+<h2 id="Rsync断点续传"><a href="#Rsync断点续传" class="headerlink" title="Rsync断点续传"></a>Rsync断点续传</h2><p>Rsync支持大文件断点续传，参数如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">--partial  </span><br><span class="line">默认情况rsync传输中断后，将会删除所有部分传输的文件，某些情况下用户希望能保留已经传输的内容，该参数告知rsync保留部分已传输的文件，可以使得剩余文件部分传输</span><br><span class="line"></span><br><span class="line">--partial-dir=DIR</span><br><span class="line">保留部分传输文件，这是个更好的参数，能够指定目录保存部分数据，而不是写入目标文件</span><br><span class="line">下次传输的时候，rsync将使用该目录的数据，来恢复整体数据传输，结束后删除该目录</span><br></pre></td></tr></table></figure>
+
+<p>【断点续传案例】</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.加上断点续传指定目录参数，传输中断，部分数据也保存在了指定目录,传输结束后，会删除该文件</span><br><span class="line">[root@nfs01 tmp]# rsync -avzP --partial-dir=/tmp/ /tmp/1  rsync_backup@192.168.178.157::backup</span><br></pre></td></tr></table></figure>
+
+<h2 id="Rsync限速"><a href="#Rsync限速" class="headerlink" title="Rsync限速"></a>Rsync限速</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">限速参数</span><br><span class="line">--bwlimit=KBPS</span><br><span class="line">该参数允许最大传输速率是多少KB/s，设置为0则不限速</span><br></pre></td></tr></table></figure>
+
+<p>在某公司，白天高峰期某DBA人员在数据库服务器通过rsync复制百G数据到备份服务器，导致数据库服务器带宽占满，造成用户无法访问。</p>
+<p>这就应该用rsync限速功能，限制复制速度在带宽的1/3这样，就能够解决该问题</p>
+<p>当然，尽量别在高峰期做大数据复制行为！</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.快四生成1G文件</span><br><span class="line">dd if=/dev/zero of=test1  bs=10M count=128</span><br><span class="line"></span><br><span class="line">2.不限速传输形式</span><br><span class="line">[root@nfs01 tmp]# rsync -avzP /tmp/test1 rsync_backup@192.168.178.157::backup</span><br><span class="line">sending incremental file list</span><br><span class="line">test1</span><br><span class="line">    495,026,176  36%   91.26MB/s    0:00:09  ^C</span><br><span class="line">rsync error: received SIGINT, SIGTERM, or SIGHUP (code 20) at rsync.c(638) [sender=3.1.2]</span><br><span class="line"></span><br><span class="line">3.限速传输</span><br><span class="line">[root@nfs01 tmp]# rsync -avzP --bwlimit=10 /tmp/  rsync_backup@192.168.178.157::backup</span><br></pre></td></tr></table></figure>
+
+<h1 id="生产经验"><a href="#生产经验" class="headerlink" title="生产经验"></a>生产经验</h1><p>rsync默认增量复制，与oss的数据复制的时候，注意参数，无法用-a参数，因为涉及到权限问题，-a是保持属性</p>
+<p>rsync -r</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://lhttao.github.io/021/10/20/Rsync%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-nginx">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/Apache%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:45:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/10/20/sersync/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          sersync
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/20/Apache%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Apache常用功能</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/Apache%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/">Apache常用功能</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#rsync%E4%B8%80%E7%A7%8D%E8%BF%9C%E7%A8%8B%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%E7%9A%84%E5%B7%A5%E5%85%B7%EF%BC%8C%E4%BB%96%E5%8F%AF%E4%BB%A5%E5%9C%A8%E7%BA%BF%E5%90%8C%E6%AD%A5%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%9D%A5%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A4%87%E4%BB%BD%EF%BC%8C%E4%B8%8E%E6%88%91%E4%BB%AC%E5%B8%B8%E7%94%A8%E7%9A%84%EF%BC%88cp-%EF%BC%8Cscp-%EF%BC%89-%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD%E6%9C%89%E5%8C%BA%E5%88%AB%EF%BC%8Crsync-%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E5%A2%9E%E9%87%8F%E5%A4%87%E4%BB%BD%EF%BC%8C%E8%BF%99%E4%B8%80%E7%82%B9%EF%BC%8C%E5%8F%AA%E6%9C%89rsync%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%88%B0%EF%BC%8C%E8%BF%99%E4%B9%9F%E6%88%90%E4%B8%BA%E4%BA%86%EF%BC%8C%E4%BC%81%E4%B8%9A%E4%B8%8A%E5%B8%B8%E7%94%A8%E7%9A%84%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">rsync一种远程数据同步的工具，他可以在线同步数据，来进行数据的备份，与我们常用的（cp ，scp ） 命令进行数据备份有区别，rsync 可以进行增量备份，这一点，只有rsync可以做到，这也成为了，企业上常用的备份工具 </span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Rsync%E6%9C%8D%E5%8A%A1%E6%A6%82%E5%BF%B5%E7%89%B9%E6%80%A7"><span class="toc-number"></span> <span class="toc-text">Rsync服务概念特性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Rsync%E5%AE%9E%E7%8E%B0%E5%A6%82%E4%B8%8B%E5%8A%9F%E8%83%BD"><span class="toc-number"></span> <span class="toc-text">Rsync实现如下功能</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A2%9E%E9%87%8F%E4%BC%A0%E8%BE%93"><span class="toc-number"></span> <span class="toc-text">增量传输</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Rsync%E8%AF%AD%E6%B3%95%E5%8F%82%E6%95%B0"><span class="toc-number"></span> <span class="toc-text">Rsync语法参数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Rsync%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-number"></span> <span class="toc-text">Rsync工作方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">本地的数据传输模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="toc-number">2.</span> <span class="toc-text">远程数据传输</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">守护进程传输模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%AE%9E%E6%88%98"><span class="toc-number">4.</span> <span class="toc-text">守护进程传输模式实战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%BC%8F%E5%AE%9E%E6%88%98-1"><span class="toc-number">5.</span> <span class="toc-text">守护进程传输模式实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90%E5%87%86%E5%A4%87%E4%B8%89%E5%8F%B0linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91"><span class="toc-number">5.1.</span> <span class="toc-text">【准备三台linux服务器】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E3%80%90%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2%EF%BC%8CRsync%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%91"><span class="toc-number">5.1.1.</span> <span class="toc-text">【环境部署，Rsync备份服务器】</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rsync%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BF%E9%97%AE%E5%8E%9F%E7%90%86%E5%9B%BE"><span class="toc-number">6.</span> <span class="toc-text">Rsync守护进程客户端访问原理图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rsync%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%83%A8%E7%BD%B2%E4%B8%80"><span class="toc-number">7.</span> <span class="toc-text">Rsync服务端部署一</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8rsync%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%9D%90%E5%A5%BD%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C"><span class="toc-number">8.</span> <span class="toc-text">在rsync服务端坐好环境配置工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rsync%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%83%A8%E7%BD%B2%E6%93%8D%E4%BD%9C"><span class="toc-number">9.</span> <span class="toc-text">rsync客户端部署操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95rsync%E6%95%B0%E6%8D%AE%E6%8E%A8%E6%8B%89"><span class="toc-number"></span> <span class="toc-text">测试rsync数据推拉</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A8%E9%80%81%EF%BC%9A%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%8C%E6%AD%A5%E6%96%87%E4%BB%B6%E7%BB%99%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="toc-number">0.1.</span> <span class="toc-text">推送：客户端同步文件给服务端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E6%95%B0%E6%8D%AE%E7%9A%84%E6%93%8D%E4%BD%9C%EF%BC%9A%E4%BB%8Ersync%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8A%8A%E6%95%B0%E6%8D%AE%E6%8B%89%E5%8F%96%E5%88%B0%E6%9C%AC%E5%9C%B0%E6%9D%A5"><span class="toc-number">0.2.</span> <span class="toc-text">拉取数据的操作：从rsync服务端把数据拉取到本地来</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98"><span class="toc-number"></span> <span class="toc-text">注意同步问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Rsync%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8E%92%E9%94%99%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">Rsync服务端排错思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rsync%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%92%E9%94%99"><span class="toc-number">2.</span> <span class="toc-text">Rsync客户端排错</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%94%99%E8%AF%AF%E7%8E%B0%E8%B1%A1%EF%BC%9ANo-route-to-host%E3%80%91"><span class="toc-number">2.1.</span> <span class="toc-text">【客户端的错误现象：No route to host】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90%E6%B3%A8%E6%84%8F%E5%91%BD%E4%BB%A4%E5%90%8C%E6%AD%A5%E7%9A%84%E7%BB%86%E8%8A%82%E3%80%91"><span class="toc-number">2.2.</span> <span class="toc-text">【注意命令同步的细节】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90ERROR-The-remote-path-must-start-with-a-module-name-not-a-%E3%80%91"><span class="toc-number">2.3.</span> <span class="toc-text">【ERROR: The remote path must start with a module name not a &#x2F;】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90-ERROR-auth-failed-on-module-backup%E3%80%91"><span class="toc-number">2.4.</span> <span class="toc-text">【@ERROR: auth failed on module backup】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90-ERROR-Unknown-module-%E2%80%98backup%E2%80%99%E3%80%91"><span class="toc-number">2.5.</span> <span class="toc-text">【@ERROR: Unknown module ‘backup’】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90Permission-denied%E3%80%91"><span class="toc-number">2.6.</span> <span class="toc-text">【Permission denied】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90chdir-failed-%E3%80%91"><span class="toc-number">2.7.</span> <span class="toc-text">【chdir failed 】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90invalid-uid-rsync%E3%80%91"><span class="toc-number">2.8.</span> <span class="toc-text">【invalid uid rsync】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%89-etc-rsync-password%E4%BE%9D%E6%97%A7%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E5%AF%86%E7%A0%81"><span class="toc-number">2.9.</span> <span class="toc-text">客户端有&#x2F;etc&#x2F;rsync.password依旧需要输入密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90Connection-refused-111-%E3%80%91"><span class="toc-number">2.10.</span> <span class="toc-text">【Connection refused (111)】</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Rync%E6%89%A9%E5%B1%95"><span class="toc-number"></span> <span class="toc-text">Rync扩展</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rsync%E5%A4%9A%E6%A8%A1%E5%9D%97"><span class="toc-number"></span> <span class="toc-text">rsync多模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rsync%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E6%8E%92%E9%99%A4%E5%A4%8D%E5%88%B6"><span class="toc-number"></span> <span class="toc-text">rsync指定目录和文件进行排除复制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%8C%E5%9C%A8Rsync%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">方法二，在Rsync服务端配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rsync%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5%E4%B9%8B%E6%97%A0%E5%B7%AE%E5%BC%82%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6"><span class="toc-number"></span> <span class="toc-text">rsync数据同步之无差异数据复制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%93delete%E5%8F%82%E6%95%B0%E6%80%BB%E7%BB%93%E4%B8%8E%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83"><span class="toc-number">0.1.</span> <span class="toc-text">–delete参数总结与生产环境</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rsync%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0"><span class="toc-number">1.</span> <span class="toc-text">Rsync断点续传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rsync%E9%99%90%E9%80%9F"><span class="toc-number">2.</span> <span class="toc-text">Rsync限速</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E7%BB%8F%E9%AA%8C"><span class="toc-number"></span> <span class="toc-text">生产经验</span></a>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-nginx">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/ansible%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:44:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/ansible%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">ansible自动化运维</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/lnotify%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%AE%9E%E6%97%B6%E5%A4%8D%E5%88%B6%E5%AE%9E%E8%B7%B5/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:41:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/lnotify%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%AE%9E%E6%97%B6%E5%A4%8D%E5%88%B6%E5%AE%9E%E8%B7%B5/">lnotify企业级实时复制实践</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/LNMP%E6%9E%B6%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:34:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/LNMP%E6%9E%B6%E6%9E%84/">LNMP架构</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/LAMP%E6%9E%B6%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:17:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/LAMP%E6%9E%B6%E6%9E%84/">LAMP架构</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -443,8 +676,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | Hexo</title>
+  <title>sersync | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="服务器同步的解决方案有很多。比较流行的有inotify-tools+rsync和Openduckbill(依赖于inotify-tools)。现在介绍一个解决方案sersync">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sersync">
+<meta property="og:url" content="http://example.com/2021/10/20/sersync/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="服务器同步的解决方案有很多。比较流行的有inotify-tools+rsync和Openduckbill(依赖于inotify-tools)。现在介绍一个解决方案sersync">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200316144938926.png">
+<meta property="article:published_time" content="2021-10-20T13:45:26.000Z">
+<meta property="article:modified_time" content="2021-10-20T14:09:15.728Z">
 <meta property="article:author" content="lhttao">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200316144938926.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,264 +165,224 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="nginx-sersync" class="article article-type-nginx " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/nginx/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:45:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/nginx/">nginx</a>
+    <h1 class="article-title" itemprop="name">
+      sersync
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-nginx">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/web%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:45:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/web%E5%9F%BA%E7%A1%80/">web基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-nginx">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/sersync/" class="archive-article-date">
+        
+        <a href="/2021/10/20/sersync/" class="archive-article-date">
   	<time datetime="2021-10-20T13:45:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/sersync/">sersync</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="服务器同步的解决方案有很多。比较流行的有inotify-tools-rsync和Openduckbill-依赖于inotify-tools-。现在介绍一个解决方案sersync"><a href="#服务器同步的解决方案有很多。比较流行的有inotify-tools-rsync和Openduckbill-依赖于inotify-tools-。现在介绍一个解决方案sersync" class="headerlink" title="服务器同步的解决方案有很多。比较流行的有inotify-tools+rsync和Openduckbill(依赖于inotify-tools)。现在介绍一个解决方案sersync  "></a>服务器同步的解决方案有很多。比较流行的有inotify-tools+rsync和Openduckbill(依赖于inotify-tools)。现在介绍一个解决方案sersync  <span id="more"></span></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">提到数据同步就必然会谈到rsync，一般简单的服务器数据传输会使用ftp/sftp等方式，但是这样的方式效率不高，不支持差异化增量同步也不支持实时传输。针对数据实时同步需求大多数人会选择rsync+inotify-tools的解决方案，sersync是国人基于前两者开发的工具，不仅保留了优点同时还强化了实时监控，文件过滤，简化配置等功能，帮助用户提高运行效率，节省时间和网络资源。</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>Sersync项目利用Inotify和Rsync工具技术实现对服务器数据实时复制。</p>
+<p>当事件发生变化后，利用rsync命令把变化的数据复制到远端服务器上。</p>
+<p>Sersync特点</p>
+<ul>
+<li>使用C++编写，支持对监控事件的过滤</li>
+<li>Sersync采用xml配置文件，由守护进程启动，配置起来比起简易的<code>inotify+rsync更简单</code></li>
+<li>使用多线程复制，可以并发复制多个不同文件，效率更高</li>
+<li>Sersync自带异常检测机制，可以通过<code>失败队列</code>对出错的文件重新复制</li>
+<li>自带crontab功能，实现对<code>失败队列</code>中的文件定时整体复制</li>
+<li>自带socket和HTTP协议扩展，定制特殊需求，二次开发</li>
+</ul>
+<h2 id="Sersync软件架构原理"><a href="#Sersync软件架构原理" class="headerlink" title="Sersync软件架构原理"></a>Sersync软件架构原理</h2><p><img src="http://book.luffycity.com/linux-book/%E9%AB%98%E6%80%A7%E8%83%BDWeb%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98/pic/image-20200316144938926.png" alt="image-20200316144938926"></p>
+<p>上图执行原理解释</p>
+<ol>
+<li>Inotify监控指定目录对应事件的变化，当有事件变化时进入事件过滤队列</li>
+<li>过滤队列负责过滤掉不需要触发复制的数据，也可以过滤短时间内产生的重复Inotify事件信息，过滤后的事件触发Rsync对应变化数据进行复制。</li>
+<li>图中线程组（线程是等待线程队列的守护线程），当事件队列中中有事件发生后，线程组守护线程会逐个唤醒复制线程（线程就是干活的工人，没活的时候打盹，来活了逐个唤醒准备干活），当队列的Inotify事件较多的时候，复制线程就会全部唤醒一起工作，提升复制效率。（活太多，所有工人全部喊起来，加快工作效率）</li>
+<li>除了线程组以外，还有Sersync服务线程负责处理<code>复制失败的文件</code>，它们再次复制，对于再次复制失败的文件（执行失败的命令），会记录到rsync_fail_log.sh脚本中，然后再定期执行脚本，同时利用自带的cron功能，实现每隔一段时间将所有未复制的数据整体复制。</li>
+</ol>
+<h2 id="Sersync部署"><a href="#Sersync部署" class="headerlink" title="Sersync部署"></a>Sersync部署</h2><h3 id="确保rsync服务正确，c-s端"><a href="#确保rsync服务正确，c-s端" class="headerlink" title="确保rsync服务正确，c/s端"></a>确保rsync服务正确，c/s端</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.大前提Rsync Daemon服务正确</span><br><span class="line">[root@nfs01 scripts]# rsync -avz --delete /data/ rsync_backup@192.168.178.110::backup</span><br></pre></td></tr></table></figure>
 
+<h3 id="确保当前客户端机器，是否支持Inotify"><a href="#确保当前客户端机器，是否支持Inotify" class="headerlink" title="确保当前客户端机器，是否支持Inotify"></a>确保当前客户端机器，是否支持Inotify</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@nfs01 scripts]# ls /proc/sys/fs/inotify/</span><br><span class="line">max_queued_events  max_user_instances  max_user_watches</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sersync安装"><a href="#Sersync安装" class="headerlink" title="Sersync安装"></a>Sersync安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1.资料参考地址</span><br><span class="line">https://github.com/wsgzao/sersync</span><br><span class="line"></span><br><span class="line">2.下载获取sersync软件包，上传至linux</span><br><span class="line">[root@nfs01 ~]# ls /MyInotify/tools/</span><br><span class="line">sersync_installdir_64bit.zip</span><br><span class="line"></span><br><span class="line">3.通过unzip命令解压缩</span><br><span class="line">unzip  sersync_installdir_64bit.zip</span><br><span class="line"></span><br><span class="line">4.进入sersync可执行命令目录</span><br><span class="line">[root@php_123 bin]# pwd </span><br><span class="line">/mytools/sersync_installdir_64bit/sersync/bin</span><br><span class="line">#给sersync命令添加可执行权限</span><br><span class="line">[root@php_123 bin]# ll </span><br><span class="line">总用量 1768</span><br><span class="line">-rw-r--r-- 1 root root 1810128 10月 26 2011 sersync</span><br><span class="line">[root@php_123 bin]# chmod +x sersync </span><br><span class="line">[root@php_123 bin]# ll</span><br><span class="line">总用量 1768</span><br><span class="line">-rwxr-xr-x 1 root root 1810128 10月 26 2011 sersync</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="sersync配置文件"><a href="#sersync配置文件" class="headerlink" title="sersync配置文件"></a>sersync配置文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">1.修改配置文件，修改如下部分</span><br><span class="line">[root@php_123 conf]# vim  /mytools/sersync_installdir_64bit/sersync/conf/confxml.xml </span><br><span class="line"># 配置文件解释</span><br><span class="line"># sersync的过滤功能，排除指定的文件不复制</span><br><span class="line">  6     &lt;filter start=&quot;false&quot;&gt;</span><br><span class="line">  7         &lt;exclude expression=&quot;(.*)\.svn&quot;&gt;&lt;/exclude&gt;</span><br><span class="line">  8         &lt;exclude expression=&quot;(.*)\.gz&quot;&gt;&lt;/exclude&gt;</span><br><span class="line">  9         &lt;exclude expression=&quot;^info/*&quot;&gt;&lt;/exclude&gt;</span><br><span class="line"> 10         &lt;exclude expression=&quot;^static/*&quot;&gt;&lt;/exclude&gt;</span><br><span class="line"> 11     &lt;/filter&gt;</span><br><span class="line"></span><br><span class="line"># 指定监控事件，也就是触发监控管理的事件，true开启，false关闭</span><br><span class="line"> 12     &lt;inotify&gt;</span><br><span class="line"> 13         &lt;delete start=&quot;true&quot;/&gt;</span><br><span class="line"> 14         &lt;createFolder start=&quot;true&quot;/&gt;</span><br><span class="line"> 15         &lt;createFile start=&quot;false&quot;/&gt;</span><br><span class="line"> 16         &lt;closeWrite start=&quot;true&quot;/&gt;</span><br><span class="line"> 17         &lt;moveFrom start=&quot;true&quot;/&gt;</span><br><span class="line"> 18         &lt;moveTo start=&quot;true&quot;/&gt;</span><br><span class="line"> 19         &lt;attrib start=&quot;false&quot;/&gt;</span><br><span class="line"> 20         &lt;modify start=&quot;false&quot;/&gt;</span><br><span class="line"> 21     &lt;/inotify&gt;</span><br><span class="line"></span><br><span class="line"> # sersync主要功能点</span><br><span class="line"> 23     &lt;sersync&gt;</span><br><span class="line"> 24         &lt;localpath watch=&quot;/data&quot;&gt;</span><br><span class="line"> # 填写rsync同步服务端ip地址，以及同步的模块名，支持复制到多台服务器</span><br><span class="line"> 25             &lt;remote ip=&quot;192.168.178.110&quot; name=&quot;bakcup&quot;/&gt;</span><br><span class="line"> 26             &lt;!--&lt;remote ip=&quot;192.168.8.39&quot; name=&quot;tongbu&quot;/&gt;--&gt;</span><br><span class="line"> 27             &lt;!--&lt;remote ip=&quot;192.168.8.40&quot; name=&quot;tongbu&quot;/&gt;--&gt;</span><br><span class="line"> 28         &lt;/localpath&gt;</span><br><span class="line"></span><br><span class="line"> # 配置rsync的信息</span><br><span class="line"> 29         &lt;rsync&gt;</span><br><span class="line"> # 命令的参数</span><br><span class="line"> 30             &lt;commonParams params=&quot;-artuz&quot;/&gt;</span><br><span class="line"> # 填写rsync服务端验证的账号，密码文件</span><br><span class="line"> 31             &lt;auth start=&quot;true&quot; users=&quot;rsync_backup&quot; passwordfile=&quot;/etc/rsync.password&quot;/&gt;</span><br><span class="line"> 32             &lt;userDefinedPort start=&quot;false&quot; port=&quot;874&quot;/&gt;&lt;!-- port=874 --&gt;</span><br><span class="line"> 33             &lt;timeout start=&quot;false&quot; time=&quot;100&quot;/&gt;&lt;!-- timeout=100 --&gt;</span><br><span class="line"> 34             &lt;ssh start=&quot;false&quot;/&gt;</span><br><span class="line"> 35         &lt;/rsync&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="sersync部署命令行"><a href="#sersync部署命令行" class="headerlink" title="sersync部署命令行"></a>sersync部署命令行</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">1.配置sersync命令环境变量</span><br><span class="line">	方式一：可以添加sersync的完整bin目录，加入到PATH中</span><br><span class="line">	方式二：把sersync命令，生成一个软链接，放入到PATH下</span><br><span class="line">	[root@php_123 bin]# ln -s /mytools/sersync_installdir_64bit/sersync/bin/sersync  /usr/local/bin/</span><br><span class="line"></span><br><span class="line">2.查看命令帮助信息</span><br><span class="line">[root@php_123 bin]# sersync -h</span><br><span class="line">set the system param</span><br><span class="line">execute：echo 50000000 &gt; /proc/sys/fs/inotify/max_user_watches</span><br><span class="line">execute：echo 327679 &gt; /proc/sys/fs/inotify/max_queued_events</span><br><span class="line">parse the command param</span><br><span class="line">_______________________________________________________</span><br><span class="line">参数-d:启用守护进程模式</span><br><span class="line">参数-r:在监控前，将监控目录与远程主机用rsync命令推送一遍</span><br><span class="line">c参数-n: 指定开启守护线程的数量，默认为10个</span><br><span class="line">参数-o:指定配置文件，默认使用confxml.xml文件</span><br><span class="line">参数-m:单独启用其他模块，使用 -m refreshCDN 开启刷新CDN模块</span><br><span class="line">参数-m:单独启用其他模块，使用 -m socket 开启socket模块</span><br><span class="line">参数-m:单独启用其他模块，使用 -m http 开启http模块</span><br><span class="line">不加-m参数，则默认执行同步程序</span><br><span class="line">________________________________________________________________</span><br><span class="line"></span><br><span class="line">3.开启sersync服务</span><br><span class="line">[root@php_123 bin]# sersync -r -d -o /mytools/sersync_installdir_64bit/sersync/conf/confxml.xml </span><br><span class="line">set the system param</span><br><span class="line">execute：echo 50000000 &gt; /proc/sys/fs/inotify/max_user_watches</span><br><span class="line">execute：echo 327679 &gt; /proc/sys/fs/inotify/max_queued_events</span><br><span class="line">parse the command param</span><br><span class="line">option: -r 	rsync all the local files to the remote servers before the sersync work</span><br><span class="line">option: -d 	run as a daemon</span><br><span class="line">option: -o 	config xml name：  /mytools/sersync_installdir_64bit/sersync/conf/confxml.xml</span><br><span class="line">daemon thread num: 10</span><br><span class="line">parse xml config file</span><br><span class="line">host ip : localhost	host port: 8008</span><br><span class="line">daemon start，sersync run behind the console </span><br><span class="line">config xml parse success</span><br><span class="line">please set /etc/rsyncd.conf max connections=0 Manually</span><br><span class="line">sersync working thread 12  = 1(primary thread) + 1(fail retry thread) + 10(daemon sub threads) </span><br><span class="line">Max threads numbers is: 22 = 12(Thread pool nums) + 10(Sub threads)</span><br><span class="line">please according your cpu ，use -n param to adjust the cpu rate</span><br><span class="line">------------------------------------------</span><br><span class="line">rsync the directory recursivly to the remote servers once</span><br><span class="line">working please wait...</span><br><span class="line">execute command: cd /data &amp;&amp; rsync -artuz -R --delete ./ 192.168.31.124::backup &gt;/dev/null 2&gt;&amp;1 </span><br><span class="line">run the sersync: </span><br><span class="line">watch path is: /data</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>添加sersync命令至开机启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@nfs01 data]# echo &quot;/MyInotify/tools/sersync_installdir_64bit/sersync/bin/sersync -d&quot; &gt;&gt; /etc/rc.local</span><br><span class="line">[root@nfs01 data]#</span><br><span class="line">[root@nfs01 data]# tail -1 /etc/rc.local</span><br><span class="line">/MyInotify/tools/sersync_installdir_64bit/sersync/bin/sersync -d</span><br></pre></td></tr></table></figure>
+
+<p>命令部署测试</p>
+
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://lhttao.github.io/021/10/20/sersync/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-nginx">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/Rsync%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:45:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2021/10/20/web%E5%9F%BA%E7%A1%80/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          web基础
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/10/20/Rsync%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Rsync备份服务</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/Rsync%E5%A4%87%E4%BB%BD%E6%9C%8D%E5%8A%A1/">Rsync备份服务</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8C%E6%AD%A5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E6%9C%89%E5%BE%88%E5%A4%9A%E3%80%82%E6%AF%94%E8%BE%83%E6%B5%81%E8%A1%8C%E7%9A%84%E6%9C%89inotify-tools-rsync%E5%92%8COpenduckbill-%E4%BE%9D%E8%B5%96%E4%BA%8Einotify-tools-%E3%80%82%E7%8E%B0%E5%9C%A8%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%AA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88sersync"><span class="toc-number">1.</span> <span class="toc-text">服务器同步的解决方案有很多。比较流行的有inotify-tools+rsync和Openduckbill(依赖于inotify-tools)。现在介绍一个解决方案sersync  </span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sersync%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%8E%9F%E7%90%86"><span class="toc-number"></span> <span class="toc-text">Sersync软件架构原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sersync%E9%83%A8%E7%BD%B2"><span class="toc-number"></span> <span class="toc-text">Sersync部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E4%BF%9Drsync%E6%9C%8D%E5%8A%A1%E6%AD%A3%E7%A1%AE%EF%BC%8Cc-s%E7%AB%AF"><span class="toc-number">1.</span> <span class="toc-text">确保rsync服务正确，c&#x2F;s端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E4%BF%9D%E5%BD%93%E5%89%8D%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%9C%BA%E5%99%A8%EF%BC%8C%E6%98%AF%E5%90%A6%E6%94%AF%E6%8C%81Inotify"><span class="toc-number">2.</span> <span class="toc-text">确保当前客户端机器，是否支持Inotify</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sersync%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">Sersync安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sersync%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">sersync配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sersync%E9%83%A8%E7%BD%B2%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-number"></span> <span class="toc-text">sersync部署命令行</span></a>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-nginx">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/Apache%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:45:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/Apache%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD/">Apache常用功能</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-nginx">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/ansible%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:44:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/ansible%E8%87%AA%E5%8A%A8%E5%8C%96%E8%BF%90%E7%BB%B4/">ansible自动化运维</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/lnotify%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%AE%9E%E6%97%B6%E5%A4%8D%E5%88%B6%E5%AE%9E%E8%B7%B5/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:41:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/lnotify%E4%BC%81%E4%B8%9A%E7%BA%A7%E5%AE%9E%E6%97%B6%E5%A4%8D%E5%88%B6%E5%AE%9E%E8%B7%B5/">lnotify企业级实时复制实践</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/LNMP%E6%9E%B6%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:34:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/LNMP%E6%9E%B6%E6%9E%84/">LNMP架构</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/10/20/LAMP%E6%9E%B6%E6%9E%84/" class="archive-article-date">
-  	<time datetime="2021-10-20T13:17:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/10/20/LAMP%E6%9E%B6%E6%9E%84/">LAMP架构</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -443,8 +409,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
